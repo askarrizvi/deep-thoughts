@@ -96,6 +96,7 @@ const resolvers = {
             if (context.user) {
               const updatedUser = await User.findOneAndUpdate(
                 { _id: context.user._id },
+                //addtoset prevents duplicates unlike push
                 { $addToSet: { friends: friendId } },
                 { new: true }
               ).populate('friends');
